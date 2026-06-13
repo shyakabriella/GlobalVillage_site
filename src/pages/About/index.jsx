@@ -144,6 +144,7 @@ const About = () => {
       </section>
 
       {/* Team */}
+      {/*
       <section className="py-32 container">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR FAMILY</p>
@@ -163,6 +164,7 @@ const About = () => {
           ))}
         </div>
       </section>
+      */}
 
       {/* CTA */}
       <section className="grid md:grid-cols-2 min-h-[420px]">
