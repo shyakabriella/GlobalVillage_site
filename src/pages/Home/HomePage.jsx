@@ -5,9 +5,9 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import Reveal from "@/components/Reveal";
 const hero = "/Danakigali-photos-021.jpg";
-const roomDeluxe = "/Danakigali-photos-012.jpg";
-const roomDouble = "/Danakigali-photos-017.jpg";
-const roomSuperior = "/Danakigali-photos-022.jpg";
+const roomDeluxe = "/Danakigali-photos-013.jpg";
+const roomDouble = "/Danakigali-photos-016.jpg";
+const roomSuperior = "/Danakigali-photos-023.jpg";
 const spa = "/Danakigali-photos-005.jpg";
 const pool = "/Danakigali-photos-021.jpg";
 const dining = "/Danakigali-photos-011.jpg";
@@ -16,9 +16,9 @@ const terrace = "/Danakigali-photos-008.jpg";
 const BRAND = "DANA KIGALI HOTEL";
 
 const rooms = [
-  { img: roomDeluxe, name: "Deluxe Ridge Room", price: 90, meta: "38m² · 2 beds · 1 bath" },
-  { img: roomDouble, name: "Classic Double", price: 80, meta: "32m² · 2 beds · 1 bath" },
-  { img: roomSuperior, name: "Summit Suite", price: 70, meta: "50m² · 3 beds · 2 baths" },
+  { img: roomDouble, name: "Deluxe Double room", price: 90, meta: "38m² · 1 double bed · 1 bath" },
+  { img: roomDeluxe, name: "Deluxe Twin Room", price: 90, meta: "38m² · 2 twin beds · 1 bath" },
+  { img: roomSuperior, name: "Family Room", price: 140, meta: "50m² · 3 beds · 2 baths" },
 ];
 
 const facilities = [

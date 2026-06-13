@@ -40,13 +40,13 @@ const SiteNav = ({ variant = "overlay" }) => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isSolid
-          ? "bg-navy-deep/95 backdrop-blur-md text-cream shadow-[0_8px_30px_-12px_hsl(215_45%_9%/0.4)]"
+          ? "bg-white/95 backdrop-blur-md text-navy-deep shadow-[0_8px_30px_-12px_hsl(215_45%_9%/0.4)]"
           : "bg-transparent text-cream"
       )}
     >
       <div className={cn("container flex items-center justify-between transition-all duration-500", isSolid ? "py-4" : "py-6")}>
-        <Link to="/" className="font-display text-2xl tracking-wide" onClick={() => setOpen(false)}>
-          {BRAND_SHORT}<span className="text-gold">.</span>
+        <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <img src="/DANA%20HOTEL.png" alt="Dana Hotel" className="h-20 w-auto" />
         </Link>
 
         <nav className="hidden md:flex gap-8 text-sm font-medium">
@@ -68,7 +68,7 @@ const SiteNav = ({ variant = "overlay" }) => {
           </Button>
           <button
             aria-label="Toggle menu"
-            className="md:hidden p-2 text-cream"
+            className={cn("md:hidden p-2", isSolid ? "text-navy-deep" : "text-cream")}
             onClick={() => setOpen((o) => !o)}
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -79,11 +79,11 @@ const SiteNav = ({ variant = "overlay" }) => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "md:hidden overflow-hidden bg-navy-deep/95 backdrop-blur-md transition-[max-height] duration-500",
+          "md:hidden overflow-hidden bg-white/95 backdrop-blur-md transition-[max-height] duration-500",
           open ? "max-h-96" : "max-h-0"
         )}
       >
-        <nav className="container flex flex-col py-6 gap-4 text-cream">
+        <nav className="container flex flex-col py-6 gap-4 text-navy-deep">
           {links.map((l) => (
             <NavLink
               key={l.to}

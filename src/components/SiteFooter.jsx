@@ -4,14 +4,14 @@ import { MapPin, Phone, Mail, Share2, Globe, MessageSquare } from "lucide-react"
 
 const SiteFooter = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-white text-navy-deep">
       <div className="container py-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Brand */}
         <div>
-          <div className="font-display text-3xl mb-4">
-            {BRAND_SHORT}<span className="text-orange-500">.</span>
+          <div className="mb-4">
+            <img src="/DANA%20HOTEL.png" alt="Dana Hotel" className="h-32 w-auto" />
           </div>
-          <p className="text-gray-400 leading-relaxed text-sm mb-6">
+          <p className="text-gray-600 leading-relaxed text-sm mb-6">
             A place where everyone feels welcomed, cared for, and truly at home.
             Inspired by Dana — from the banks of the Nile to the hills of Kigali.
           </p>
@@ -31,7 +31,7 @@ const SiteFooter = () => {
         {/* Navigation */}
         <div>
           <h3 className="text-xs tracking-[0.3em] uppercase text-orange-500 mb-6">Explore</h3>
-          <ul className="space-y-3 text-sm text-gray-400">
+          <ul className="space-y-3 text-sm text-gray-600">
             {[
               { to: "/", label: "Home" },
               { to: "/about", label: "About Us" },
@@ -51,7 +51,7 @@ const SiteFooter = () => {
         {/* Contact */}
         <div>
           <h3 className="text-xs tracking-[0.3em] uppercase text-orange-500 mb-6">Contact</h3>
-          <ul className="space-y-4 text-sm text-gray-400">
+          <ul className="space-y-4 text-sm text-gray-600">
             <li className="flex items-start gap-3">
               <MapPin className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
               <span>KG 7 Ave, Kigali, Rwanda</span>
@@ -70,7 +70,7 @@ const SiteFooter = () => {
         {/* Legal / Policy */}
         <div>
           <h3 className="text-xs tracking-[0.3em] uppercase text-orange-500 mb-6">Policies</h3>
-          <ul className="space-y-3 text-sm text-gray-400">
+          <ul className="space-y-3 text-sm text-gray-600">
             {[
               { to: "/privacy-policy", label: "Privacy Policy" },
               { to: "/terms-conditions", label: "Terms & Conditions" },
@@ -88,7 +88,7 @@ const SiteFooter = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-200">
         <div className="container py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <p>© {new Date().getFullYear()} {BRAND}. All rights reserved.</p>
           <p>Crafted with care in Kigali, Rwanda.</p>

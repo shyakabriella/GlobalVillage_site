@@ -6,7 +6,7 @@ const CancellationPolicy = () => {
     <div className="bg-background text-foreground">
       <SiteNav />
 
-      <section className="relative h-[72vh] min-h-[520px] flex items-end">
+      <section className="relative h-[72vh] min-h-[520px] flex items-end bg-navy-deep">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_40%)]" />
         <div className="container relative z-10 pb-20 text-cream">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— CANCELLATION</p>

@@ -12,19 +12,16 @@ const roomSingle = "/Danakigali-photos-024.jpg";
 const roomPenthouse = "/Danakigali-photos-024.jpg";
 
 const rooms = [
-  { img: roomSingle, name: "Alpine Single", price: 60, size: "24m²", beds: "1 queen", guests: 1, baths: 1, cat: "single", tag: "Cosy" },
-  { img: roomDouble, name: "Classic Double", price: 80, size: "32m²", beds: "2 twins", guests: 2, baths: 1, cat: "double", tag: "Best value" },
-  { img: roomDeluxe, name: "Deluxe Ridge Room", price: 90, size: "38m²", beds: "1 king", guests: 2, baths: 1, cat: "double", tag: "Most loved" },
-  { img: roomSuperior, name: "Summit Suite", price: 140, size: "50m²", beds: "1 king + sofa", guests: 3, baths: 2, cat: "suite", tag: "Suite" },
-  { img: roomPenthouse, name: "Ridgeline Penthouse", price: 320, size: "92m²", beds: "1 king + den", guests: 4, baths: 2, cat: "suite", tag: "Signature" },
-  { img: roomDeluxe, name: "Forest View Deluxe", price: 110, size: "42m²", beds: "1 king", guests: 2, baths: 1, cat: "double", tag: "New" },
+  { img: roomDouble, name: "Deluxe Double room", price: 90, size: "38m²", beds: "1 double bed", guests: 2, baths: 1, cat: "double", tag: "Most loved" },
+  { img: roomDeluxe, name: "Deluxe Twin Room", price: 90, size: "38m²", beds: "2 twin beds", guests: 2, baths: 1, cat: "twin", tag: "Best value" },
+  { img: roomSuperior, name: "Family Room", price: 140, size: "50m²", beds: "3 beds", guests: 4, baths: 2, cat: "family", tag: "Spacious" },
 ];
 
 const filters = [
   { id: "all", label: "All Rooms" },
-  { id: "single", label: "Single" },
   { id: "double", label: "Double" },
-  { id: "suite", label: "Suites" },
+  { id: "twin", label: "Twin" },
+  { id: "family", label: "Family" },
 ];
 
 const Rooms = () => {
