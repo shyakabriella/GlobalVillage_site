@@ -4,18 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bed, Maximize2, Users, Bath } from "lucide-react";
 import SiteNav, { BRAND } from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-const hero = "/Danakigali-photos-021.jpg";
-const roomDeluxe = "/Danakigali-photos-013.jpg";
-const roomDouble = "/Danakigali-photos-016.jpg";
-const roomSuperior = "/Danakigali-photos-023.jpg";
-const roomSingle = "/Danakigali-photos-024.jpg";
-const roomPenthouse = "/Danakigali-photos-024.jpg";
-
-const rooms = [
-  { img: roomDouble, name: "Deluxe Double room",beds: "1 double bed", guests: 2, baths: 1, cat: "double", tag: "Most loved" },
-  { img: roomDeluxe, name: "Deluxe Twin Room",beds: "2 twin beds", guests: 2, baths: 1, cat: "twin", tag: "Best value" },
-  { img: roomSuperior, name: "Family Room", beds: "3 beds", guests: 4, baths: 2, cat: "family", tag: "Spacious" },
-];
+import { useContent } from "@/contexts/ContentContext";
 
 const filters = [
   { id: "all", label: "All Rooms" },
@@ -25,20 +14,31 @@ const filters = [
 ];
 
 const Rooms = () => {
+  const { pages } = useContent();
+  const pageData = pages.find((p) => p.id === '5');
+  const sections = pageData.sections;
   const [active, setActive] = useState("all");
-  const list = active === "all" ? rooms : rooms.filter((r) => r.cat === active);
+  const list = active === "all" ? sections.roomsList : sections.roomsList.filter((r) => r.cat === active);
 
   return (
     <div className="bg-background text-foreground">
       <SiteNav />
 
       {/* Page hero */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-end">
-        <img src={hero} alt={`${BRAND} ridge view`} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+      <section className="relative h-[60vh] min-h-[420px] flex items-end">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={sections.hero.image}
+            alt={`${BRAND} ridge view`}
+            className="w-full h-full object-cover animate-ken-burns"
+            width={1920}
+            height={1280}
+          />
+          <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        </div>
         <div className="container relative z-10 text-cream pb-16">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— THE RIDGE COLLECTION</p>
-          <h1 className="font-display text-4xl md:text-6xl">Rooms &amp; Suites</h1>
+          <h1 className="font-display text-4xl md:text-6xl">{sections.hero.title}</h1>
           <nav className="mt-6 text-sm text-cream/70">
             <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
@@ -48,11 +48,11 @@ const Rooms = () => {
       </section>
 
       {/* Intro */}
-      <section className="py-10 container text-center max-w-3xl mx-auto">
+      <section className="py-20 container text-center max-w-3xl mx-auto">
         <p className="text-gold tracking-[0.3em] text-sm mb-4">— SIX WAYS TO STAY</p>
-        <h2 className="font-display text-3xl md:text-4xl mb-6">Choose your ridge.</h2>
+        <h2 className="font-display text-4xl md:text-5xl mb-6">{sections.intro.title}</h2>
         <p className="text-muted-foreground leading-relaxed">
-          Each room at {BRAND} is shaped around its view — from compact alpine retreats to suites with private terraces and stone fireplaces. All include daily housekeeping, hand-finished linens, and unhurried mornings.
+          {sections.intro.body}
         </p>
       </section>
 
@@ -76,10 +76,10 @@ const Rooms = () => {
       </section>
 
       {/* Grid */}
-      <section className="pb-16 container">
+      <section className="pb-32 container">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {list.map((r) => (
-            <article key={r.name} className="group bg-background shadow-[var(--shadow-luxe)] overflow-hidden flex flex-col">
+            <article key={r.id || r.name} className="group bg-background shadow-[var(--shadow-luxe)] overflow-hidden flex flex-col h-full">
               <div className="relative overflow-hidden">
                 <img src={r.img} alt={r.name} loading="lazy" className="w-full h-72 object-cover group-hover:scale-105 transition duration-700" />
                 <span className="absolute top-4 left-4 bg-gold text-navy-deep text-xs tracking-widest uppercase px-3 py-1 font-semibold">{r.tag}</span>
@@ -106,7 +106,7 @@ const Rooms = () => {
       </section>
 
       {/* Help strip */}
-      <section className="bg-navy text-cream py-10">
+      <section className="bg-navy text-cream py-16">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
             <p className="text-gold tracking-[0.3em] text-sm mb-2">— NEED HELP CHOOSING?</p>

@@ -70,12 +70,12 @@ const Experiences = () => {
       <SiteNav />
 
       {/* Page hero */}
-      <section className="relative h-[60vh] min-h-[420px] flex items-end">
+      <section className="relative h-[50vh] min-h-[350px] flex items-end">
         <img src={hero} alt={`${BRAND} ridge view`} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="container relative z-10 text-cream pb-16">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— SIGNATURE EXPERIENCES</p>
-          <h1 className="font-display text-5xl md:text-7xl">Experiences</h1>
+          <h1 className="font-display text-4xl md:text-6xl">Experiences</h1>
           <nav className="mt-6 text-sm text-cream/70">
             <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
@@ -85,16 +85,16 @@ const Experiences = () => {
       </section>
 
       {/* Intro */}
-      <section className="py-20 container text-center max-w-3xl mx-auto">
+      <section className="py-10 container text-center max-w-3xl mx-auto">
         <p className="text-gold tracking-[0.3em] text-sm mb-4">— SIX WAYS TO REMEMBER</p>
-        <h2 className="font-display text-4xl md:text-5xl mb-6">Memories that linger.</h2>
+        <h2 className="font-display text-3xl md:text-4xl mb-6">Memories that linger.</h2>
         <p className="text-muted-foreground leading-relaxed">
           At {BRAND}, your comfort is our priority. Each experience is designed to provide you with a relaxing, welcoming, and memorable stay in the heart of Kigali.
         </p>
       </section>
 
       {/* Experience list */}
-      <section className="pb-32 container space-y-24">
+      <section className="pb-16 container space-y-24">
         {experiences.map((exp, i) => (
           <article
             key={exp.title}
@@ -106,7 +106,7 @@ const Experiences = () => {
                   src={exp.img}
                   alt={exp.title}
                   loading="lazy"
-                  className="w-full h-[480px] object-cover hover:scale-105 transition duration-700"
+                  className="w-full h-[380px] object-cover hover:scale-105 transition duration-700"
                   width={1024}
                   height={768}
                 />
@@ -126,10 +126,10 @@ const Experiences = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-navy-deep text-cream text-center">
+      <section className="py-10 bg-navy-deep text-cream text-center">
         <div className="container max-w-3xl mx-auto">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— BEGIN YOUR STORY</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-6">Reserve your first experience.</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-6">Reserve your first experience.</h2>
           <p className="text-cream/70 mb-10 leading-relaxed">
             Many of our rooms and suites are exclusive to guests. Book a room and unlock true comfort.
           </p>

@@ -25,19 +25,19 @@ const PrivacyPolicy = () => {
             At {BRAND}, we respect your privacy and are committed to protecting the personal information you share with us. This policy explains how we collect, use, and safeguard your data when you visit our website.
           </p>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">Information We Collect</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Information We Collect</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               We may collect information that you provide directly, such as reservation inquiries, newsletter sign-ups, or customer support requests. We also gather technical data automatically, including browser type and session details, to improve the site experience.
             </p>
           </div>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">How We Use Data</h2>
+            <h2 className="font-display text-3xl md:text-4xl">How We Use Data</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Your information is used to respond to requests, deliver services, and communicate important updates. We do not sell your personal data, and we use appropriate safeguards to keep it secure.
             </p>
           </div>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">Cookies</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Cookies</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               We use cookies and similar technologies to personalize your experience and analyze site performance. You can manage browser settings to control cookie usage.
             </p>

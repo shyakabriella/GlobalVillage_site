@@ -38,12 +38,12 @@ const About = () => {
       <SiteNav />
 
       {/* Page hero */}
-      <section className="relative h-[60vh] min-h-[420px] flex items-end">
+      <section className="relative h-[50vh] min-h-[350px] flex items-end">
         <img src={hero} alt={`${BRAND}`} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="container relative z-10 text-cream pb-16">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR STORY</p>
-          <h1 className="font-display text-5xl md:text-7xl">About {BRAND}</h1>
+          <h1 className="font-display text-4xl md:text-6xl">About {BRAND}</h1>
           <nav className="mt-6 text-sm text-cream/70">
             <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
@@ -53,10 +53,10 @@ const About = () => {
       </section>
 
       {/* Story */}
-      <section className="py-32 container grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-16 container grid md:grid-cols-2 gap-16 items-center">
         <div>
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— WELCOME</p>
-          <h2 className="font-display text-4xl md:text-5xl leading-tight mb-6">Your Home Away from Home.</h2>
+          <h2 className="font-display text-3xl md:text-4xl leading-tight mb-6">Your Home Away from Home.</h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
               <strong className="text-foreground font-display text-xl">DANA KIGALI HOTEL is more than just a place to stay.</strong> It is a story of family, culture, hospitality, and kindness, carried from the banks of the River Nile to the beautiful land of a thousand hills (Rwanda).
@@ -100,11 +100,11 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-cream">
+      <section className="py-16 bg-cream">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR VALUES</p>
-            <h2 className="font-display text-4xl md:text-5xl">The spirit of Dana, in everything we do.</h2>
+            <h2 className="font-display text-3xl md:text-4xl">The spirit of Dana, in everything we do.</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {values.map(({ icon: Icon, title, text }) => (
@@ -119,11 +119,11 @@ const About = () => {
       </section>
 
       {/* Heritage */}
-      <section className="py-32 bg-navy-deep text-cream">
+      <section className="py-16 bg-navy-deep text-cream">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR HERITAGE</p>
-            <h2 className="font-display text-4xl md:text-5xl">A legacy from the Nile to the hills.</h2>
+            <h2 className="font-display text-3xl md:text-4xl">A legacy from the Nile to the hills.</h2>
           </div>
           <div className="relative max-w-3xl mx-auto">
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-cream/20" />
@@ -167,11 +167,11 @@ const About = () => {
       */}
 
       {/* CTA */}
-      <section className="grid md:grid-cols-2 min-h-[420px]">
+      <section className="grid md:grid-cols-2 min-h-[350px]">
         <img src={dining} alt="Dining at DANA KIGALI HOTEL" loading="lazy" className="w-full h-full object-cover min-h-[300px]" />
-        <div className="bg-navy text-cream p-12 md:p-20 flex flex-col justify-center">
+        <div className="bg-navy text-cream p-12 md:p-16 flex flex-col justify-center">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— COME STAY</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-6">A warm welcome is waiting.</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-6">A warm welcome is waiting.</h2>
           <p className="text-cream/70 mb-8 leading-relaxed max-w-md">Reserve a room and experience the true meaning of home in the heart of Kigali.</p>
           <div className="flex gap-4 flex-wrap">
             <Button className="bg-gold hover:bg-gold-light text-navy-deep rounded-none px-8">Reserve a Stay</Button>

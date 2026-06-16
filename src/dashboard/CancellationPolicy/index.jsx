@@ -25,19 +25,19 @@ const CancellationPolicy = () => {
             We want your stay at DANA KIGALI HOTEL to be effortless. This page explains our cancellation terms, time frames, and refund guidelines.
           </p>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">Standard Cancellation</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Standard Cancellation</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Reservations may be cancelled up to 48 hours before arrival without any fee. Cancellations made after that period may incur charges, depending on the selected rate plan.
             </p>
           </div>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">No-Show Policy</h2>
+            <h2 className="font-display text-3xl md:text-4xl">No-Show Policy</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               If you do not arrive on the scheduled check-in date and do not notify us in advance, the first night may be charged and any remaining nights may be cancelled.
             </p>
           </div>
           <div className="space-y-5">
-            <h2 className="font-display text-2xl md:text-3xl">Refunds</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Refunds</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Refunds are issued to the original payment method within 7-10 business days after cancellation, when applicable.
             </p>

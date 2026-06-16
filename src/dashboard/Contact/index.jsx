@@ -3,57 +3,36 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, MapPin, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import SiteNav, { BRAND } from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import Reveal from "@/components/Reveal";
-import hero from "@/assets/contact-hero.jpg";
-import terrace from "@/assets/terrace.jpg";
-
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Address",
-    lines: ["3 KG 303 St, Kigali", "Rwanda"],
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    lines: ["+250 788 000 000", "+250 788 111 111"],
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    lines: [" danakigalihotel@gmail.com"],
-  },
-  {
-    icon: Clock,
-    title: "Reception Hours",
-    lines: ["Open 24 hours", "Every day of the year"],
-  },
-];
-
-const hours = [
-  { label: "Reception", value: "24 / 7" },
-  { label: "Restaurant", value: "6:00 AM – 11:00 PM" },
-  { label: "Room Service", value: "24 / 7" },
-  { label: "Spa & Wellness", value: "9:00 AM – 9:00 PM" },
-  { label: "Concierge", value: "7:00 AM – 10:00 PM" },
-  { label: "Airport Transfer", value: "On request, 24h advance" },
-];
+import { useContent } from "@/contexts/ContentContext";
+import DynamicIcon from "@/components/DynamicIcon";
 
 const Contact = () => {
+  const { pages } = useContent();
+  const pageData = pages.find((p) => p.id === '3');
+  const sections = pageData.sections;
+
   return (
     <div className="bg-background text-foreground">
       <SiteNav />
 
       {/* Page hero */}
       <section className="relative h-[60vh] min-h-[420px] flex items-end">
-        <img src={hero} alt={`${BRAND} contact`} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        <div className="absolute inset-0 z-0">
+          <img
+            src={sections.hero.image}
+            alt="Contact DANA KIGALI HOTEL"
+            className="w-full h-full object-cover animate-ken-burns"
+            width={1920}
+            height={1280}
+          />
+          <div className="absolute inset-0 bg-navy-deep/70" />
+        </div>
         <div className="container relative z-10 text-cream pb-16">
           <p className="text-gold tracking-[0.3em] text-sm mb-4">— GET IN TOUCH</p>
-          <h1 className="font-display text-4xl md:text-6xl">Contact Us</h1>
+          <h1 className="font-display text-4xl md:text-6xl">{sections.hero.title}</h1>
           <nav className="mt-6 text-sm text-cream/70">
             <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
@@ -67,22 +46,26 @@ const Contact = () => {
         <Reveal>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-gold tracking-[0.3em] text-sm mb-4">— REACH OUT</p>
-            <h2 className="font-display text-3xl md:text-4xl">We are here for you.</h2>
+            <h2 className="font-display text-4xl md:text-5xl">{sections.reachOut.title}</h2>
             <p className="text-muted-foreground leading-relaxed mt-4">
-              Whether you have a question, a special request, or simply want to say hello — our team is ready to welcome you with the warmth of the DANA family.
+              {sections.reachOut.body}
             </p>
           </div>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-          {contactInfo.map(({ icon: Icon, title, lines }, idx) => (
-            <Reveal key={title} delay={idx * 120}>
-              <div className="bg-background p-10 h-full">
-                <Icon className="w-10 h-10 text-gold mb-5" strokeWidth={1.5} />
-                <h3 className="font-display text-2xl mb-3">{title}</h3>
-                {lines.map((line) => (
-                  <p key={line} className="text-muted-foreground leading-relaxed">{line}</p>
-                ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+          {sections.contactInfo.map((info, idx) => (
+            <Reveal key={info.id || info.title} delay={idx * 100}>
+              <div className="bg-background border border-border p-8 h-full flex flex-col items-center text-center group hover:border-gold/50 transition-colors">
+                <div className="w-12 h-12 bg-cream rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+                  <DynamicIcon name={info.icon} className="w-5 h-5 text-gold" />
+                </div>
+                <h3 className="font-display text-xl mb-4">{info.title}</h3>
+                <div className="space-y-1 text-muted-foreground text-sm">
+                  {info.lines.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
               </div>
             </Reveal>
           ))}
@@ -96,7 +79,7 @@ const Contact = () => {
           <Reveal>
             <div>
               <p className="text-gold tracking-[0.3em] text-sm mb-4">— SEND A MESSAGE</p>
-              <h2 className="font-display text-3xl md:text-4xl mb-6">Write to us.</h2>
+              <h2 className="font-display text-4xl md:text-5xl mb-6">Write to us.</h2>
               <p className="text-muted-foreground leading-relaxed mb-10 max-w-md">
                 Fill in the form below and we will get back to you within 24 hours. For urgent matters, please call us directly.
               </p>
@@ -163,7 +146,7 @@ const Contact = () => {
                   type="submit"
                   className="bg-gold hover:bg-gold-light text-navy-deep font-semibold rounded-none px-10 h-12"
                 >
-                  <Send className="w-4 h-4 mr-2" />
+                  <DynamicIcon name="Send" className="w-4 h-4 mr-2" />
                   Send Message
                 </Button>
               </form>
@@ -172,29 +155,17 @@ const Contact = () => {
 
           {/* Map image + Hours */}
           <div className="space-y-10">
-            <Reveal delay={150}>
-              <div className="overflow-hidden">
-                <img
-                  src={terrace}
-                  alt="DANA KIGALI HOTEL terrace view"
-                  loading="lazy"
-                  className="w-full h-[400px] object-cover hover:scale-105 transition duration-700"
-                />
+            <Reveal animation="slide-in-right" className="h-full relative min-h-[400px]">
+              <div className="absolute inset-0 bg-navy">
+                <img src={sections.mapImage} alt="DANA KIGALI HOTEL view" className="w-full h-full object-cover opacity-60 mix-blend-overlay" />
               </div>
-              <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1">
-                <MapPin className="w-3 h-3" />3 KG 303 St, Kigali, Rwanda
-              </p>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div>
-                <p className="text-gold tracking-[0.3em] text-sm mb-4">— OPENING HOURS</p>
-                <h3 className="font-display text-3xl mb-6">At your service.</h3>
-                <div className="space-y-0 divide-y divide-border border-t border-border">
-                  {hours.map((h) => (
-                    <div key={h.label} className="flex justify-between py-4">
-                      <span className="text-muted-foreground">{h.label}</span>
-                      <span className="font-medium">{h.value}</span>
+              <div className="absolute inset-0 p-12 flex flex-col justify-center text-cream">
+                <h3 className="font-display text-3xl mb-8">Hours of Operation</h3>
+                <div className="space-y-6">
+                  {sections.hours.map((item) => (
+                    <div key={item.id || item.label} className="flex justify-between items-center border-b border-cream/20 pb-4">
+                      <span className="font-semibold tracking-wider uppercase text-xs text-gold">{item.label}</span>
+                      <span className="text-sm">{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -211,7 +182,7 @@ const Contact = () => {
             <div className="max-w-3xl mx-auto text-center">
               <MessageCircle className="w-12 h-12 text-gold mx-auto mb-6" strokeWidth={1.5} />
               <p className="text-gold tracking-[0.3em] text-sm mb-4">— INSTANT MESSAGING</p>
-              <h2 className="font-display text-3xl md:text-4xl mb-6">Prefer to chat on WhatsApp?</h2>
+              <h2 className="font-display text-4xl md:text-5xl mb-6">Prefer to chat on WhatsApp?</h2>
               <p className="text-cream/70 mb-10 leading-relaxed">
                 Send us a message anytime on WhatsApp and our team will respond as soon as possible. Perfect for quick questions and last-minute requests.
               </p>

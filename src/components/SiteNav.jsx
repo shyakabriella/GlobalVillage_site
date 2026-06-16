@@ -38,13 +38,10 @@ const SiteNav = ({ variant = "overlay" }) => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isSolid
-          ? "bg-white/95 backdrop-blur-md text-navy-deep shadow-[0_8px_30px_-12px_hsl(215_45%_9%/0.4)]"
-          : "bg-transparent text-cream"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white text-navy-deep shadow-sm"
       )}
     >
-      <div className={cn("container flex items-center justify-between transition-all duration-500", isSolid ? "py-4" : "py-6")}>
+      <div className={cn("container flex items-center justify-between transition-all duration-500", scrolled ? "py-4" : "py-6")}>
         <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
           <img src="/DANA%20HOTEL.png" alt="Dana Hotel" className="h-20 w-auto" />
         </Link>
@@ -68,7 +65,7 @@ const SiteNav = ({ variant = "overlay" }) => {
           </Button>
           <button
             aria-label="Toggle menu"
-            className={cn("md:hidden p-2", isSolid ? "text-navy-deep" : "text-cream")}
+            className="md:hidden p-2 text-navy-deep"
             onClick={() => setOpen((o) => !o)}
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
