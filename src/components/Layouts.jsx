@@ -35,7 +35,7 @@ function MobileBottomBar() {
         </button>
 
         <a
-          href="tel:+250780443787"
+          href="tel:+250798654891"
           className="flex flex-col items-center justify-center border-r border-cream/10 text-cream hover:text-gold transition-colors"
         >
           <span className="mb-1 inline-flex">

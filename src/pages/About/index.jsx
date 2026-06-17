@@ -81,8 +81,8 @@ const About = () => {
             </p>
             <p className="text-gold font-display text-xl">Please feel at home.</p>
           </div>
-          <div className="grid grid-cols-3 gap-6 mt-10">
-            {[{ n: "150+", l: "Years of heritage" }, { n: "1,000", l: "Hills of Rwanda" }, { n: "Family", l: "You are part of it" }].map((s) => (
+          <div className="grid grid-cols-2 gap-6 mt-10">
+            {[{ n: "1,000", l: "Hills of Rwanda" }, { n: "Family", l: "You are part of it" }].map((s) => (
               <div key={s.l} className="border-t-2 border-gold pt-4">
                 <div className="font-display text-4xl">{s.n}</div>
                 <div className="text-xs text-muted-foreground mt-1 tracking-wider uppercase">{s.l}</div>
