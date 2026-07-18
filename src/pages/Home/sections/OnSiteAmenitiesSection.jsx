@@ -94,7 +94,7 @@ const OnSiteAmenitiesSection = () => {
 
           <p className="mx-auto max-w-2xl text-base leading-8 text-black/60">
             Eat, shop, relax and enjoy your stay with
-            convenient facilities available at Globar
+            convenient facilities available at Global
             Village Apartment.
           </p>
         </Reveal>
@@ -124,7 +124,7 @@ const OnSiteAmenitiesSection = () => {
                 >
                   <img
                     src={image}
-                    alt={`${title} at Globar Village Apartment`}
+                    alt={`${title} at Global Village Apartment`}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                   />

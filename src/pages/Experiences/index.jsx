@@ -249,7 +249,7 @@ const Experiences = () => {
               <p className="max-w-2xl leading-8 text-white/65">
                 Discover comfortable accommodation,
                 relaxing facilities and convenient
-                experiences at Globar Village Apartment.
+                experiences at Global Village Apartment.
               </p>
 
               <nav className="mt-7 flex items-center gap-3 text-xs uppercase tracking-[0.15em]">
@@ -460,7 +460,7 @@ const Experiences = () => {
             </p>
 
             <h2 className="mb-6 font-display text-3xl leading-tight md:text-5xl">
-              Make Globar Village
+              Make Global Village
               <span className="block italic text-[#16AEE5]">
                 your Kigali home.
               </span>

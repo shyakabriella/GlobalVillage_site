@@ -30,22 +30,22 @@ const initialPages = [
     status: "Published",
     lastModified: "Today, 09:41 AM",
     metaTitle:
-      "Globar Village Aprtment Ltd – Modern Living, Redefined.",
+      "Global Village Aprtment Ltd – Modern Living, Redefined.",
     metaDescription:
-      "Discover comfortable and modern apartment accommodation at Globar Village Aprtment Ltd.",
+      "Discover comfortable and modern apartment accommodation at Global Village Aprtment Ltd.",
     sections: {
       hero: {
         image: images.hero,
         title: "Modern Living,\nRedefined.",
         subtitle:
-          "GLOBAR VILLAGE APRTMENT LTD welcomes you to modern, comfortable and convenient living in Kigali, Rwanda.",
+          "Global VILLAGE APRTMENT LTD welcomes you to modern, comfortable and convenient living in Kigali, Rwanda.",
       },
 
       aboutSnippet: {
         image: images.pool,
         title: "Designed with you in mind.",
         body:
-          "GLOBAR VILLAGE APRTMENT LTD provides comfortable and thoughtfully designed apartments for short visits, business trips, family holidays and extended stays. Every space combines privacy, convenience and modern living.",
+          "Global VILLAGE APRTMENT LTD provides comfortable and thoughtfully designed apartments for short visits, business trips, family holidays and extended stays. Every space combines privacy, convenience and modern living.",
       },
 
       facilities: [
@@ -139,20 +139,20 @@ const initialPages = [
     status: "Published",
     lastModified: "Oct 10, 2026",
     metaTitle:
-      "About Us – Globar Village Aprtment Ltd",
+      "About Us – Global Village Aprtment Ltd",
     metaDescription:
-      "Learn more about Globar Village Aprtment Ltd and our modern apartment accommodation.",
+      "Learn more about Global Village Aprtment Ltd and our modern apartment accommodation.",
     sections: {
       hero: {
         image: images.hero,
-        title: "About GLOBAR VILLAGE",
+        title: "About Global VILLAGE",
       },
 
       welcome: {
         image: images.terrace,
         title: "Modern Living, Redefined.",
         body:
-          "GLOBAR VILLAGE APRTMENT LTD provides modern, comfortable and convenient apartment accommodation in Kigali, Rwanda.\n\nOur apartments are created for guests who want more than a room. We provide welcoming living spaces where individuals, couples, families and business travellers can enjoy comfort, privacy and independence.\n\nEvery apartment is designed with practical living in mind. Our spaces combine modern interiors, comfortable rooms and essential amenities to create an environment that feels like home.\n\nWhether you are visiting Kigali for business, leisure, family travel or an extended stay, GLOBAR VILLAGE APRTMENT LTD offers a peaceful and convenient place to live.\n\nOur team is committed to cleanliness, security, comfort and dependable guest support. We pay attention to the details that help make every stay simple and enjoyable.\n\nAt GLOBAR VILLAGE APRTMENT LTD, modern living is redefined around your needs.",
+          "Global VILLAGE APRTMENT LTD provides modern, comfortable and convenient apartment accommodation in Kigali, Rwanda.\n\nOur apartments are created for guests who want more than a room. We provide welcoming living spaces where individuals, couples, families and business travellers can enjoy comfort, privacy and independence.\n\nEvery apartment is designed with practical living in mind. Our spaces combine modern interiors, comfortable rooms and essential amenities to create an environment that feels like home.\n\nWhether you are visiting Kigali for business, leisure, family travel or an extended stay, Global VILLAGE APRTMENT LTD offers a peaceful and convenient place to live.\n\nOur team is committed to cleanliness, security, comfort and dependable guest support. We pay attention to the details that help make every stay simple and enjoyable.\n\nAt Global VILLAGE APRTMENT LTD, modern living is redefined around your needs.",
       },
 
       values: [
@@ -217,7 +217,7 @@ const initialPages = [
           id: "m3",
           year: "Today",
           text:
-            "GLOBAR VILLAGE APRTMENT LTD welcomes local and international guests.",
+            "Global VILLAGE APRTMENT LTD welcomes local and international guests.",
         },
         {
           id: "m4",
@@ -257,9 +257,9 @@ const initialPages = [
     status: "Published",
     lastModified: "Sep 25, 2026",
     metaTitle:
-      "Contact Us – Globar Village Aprtment Ltd",
+      "Contact Us – Global Village Aprtment Ltd",
     metaDescription:
-      "Contact Globar Village Aprtment Ltd for apartment reservations and inquiries.",
+      "Contact Global Village Aprtment Ltd for apartment reservations and inquiries.",
     sections: {
       hero: {
         image: images.contactHero,
@@ -269,7 +269,7 @@ const initialPages = [
       reachOut: {
         title: "We are here for you.",
         body:
-          "Whether you want to reserve an apartment, ask a question or make a special request, the GLOBAR VILLAGE team is ready to assist you.",
+          "Whether you want to reserve an apartment, ask a question or make a special request, the Global VILLAGE team is ready to assist you.",
       },
 
       mapImage: images.terrace,
@@ -291,7 +291,7 @@ const initialPages = [
           id: "c3",
           icon: "Mail",
           title: "Email",
-          lines: "info@globarvillage.com",
+          lines: "info@Globalvillage.com",
         },
         {
           id: "c4",
@@ -343,9 +343,9 @@ const initialPages = [
     status: "Published",
     lastModified: "Oct 12, 2026",
     metaTitle:
-      "Experiences – Globar Village Aprtment Ltd",
+      "Experiences – Global Village Aprtment Ltd",
     metaDescription:
-      "Discover comfortable modern living at Globar Village Aprtment Ltd.",
+      "Discover comfortable modern living at Global Village Aprtment Ltd.",
     sections: {
       hero: {
         image: images.hero,
@@ -355,7 +355,7 @@ const initialPages = [
       intro: {
         title: "Comfort in every moment.",
         body:
-          "At GLOBAR VILLAGE APRTMENT LTD, every service is designed to make your stay comfortable, private and memorable.",
+          "At Global VILLAGE APRTMENT LTD, every service is designed to make your stay comfortable, private and memorable.",
       },
 
       experiencesList: [
@@ -458,9 +458,9 @@ const initialPages = [
     status: "Published",
     lastModified: "Oct 11, 2026",
     metaTitle:
-      "Apartments – Globar Village Aprtment Ltd",
+      "Apartments – Global Village Aprtment Ltd",
     metaDescription:
-      "Browse the available apartments at Globar Village Aprtment Ltd.",
+      "Browse the available apartments at Global Village Aprtment Ltd.",
     sections: {
       hero: {
         image: images.hero,
@@ -470,7 +470,7 @@ const initialPages = [
       intro: {
         title: "Find your ideal apartment.",
         body:
-          "Each apartment at GLOBAR VILLAGE APRTMENT LTD is designed to provide privacy, comfort and convenience. Choose the accommodation that best matches your visit, family size and length of stay.",
+          "Each apartment at Global VILLAGE APRTMENT LTD is designed to provide privacy, comfort and convenience. Choose the accommodation that best matches your visit, family size and length of stay.",
       },
 
       roomsList: [

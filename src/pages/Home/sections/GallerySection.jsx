@@ -12,57 +12,57 @@ const galleryImages = [
   {
     id: 1,
     src: "/glb.jpg",
-    alt: "Front view of Globar Village Apartment",
+    alt: "Front view of Global Village Apartment",
     title: "Exterior View",
     category: "Property",
   },
   {
     id: 2,
     src: "/glbrooftop.jpg",
-    alt: "Globar Village rooftop",
+    alt: "Global Village rooftop",
     title: "Rooftop",
     category: "Outdoor",
   },
   {
     id: 3,
     src: "/glbside.jpg",
-    alt: "Side view of Globar Village Apartment",
+    alt: "Side view of Global Village Apartment",
     title: "Side View",
     category: "Property",
   },
   {
     id: 4,
     src: "/room.jpg",
-    alt: "Globar Village apartment bedroom",
+    alt: "Global Village apartment bedroom",
     title: "Apartment Bedroom",
     category: "Accommodation",
   },
   {
     id: 5,
     src: "/room1.jpg",
-    alt: "Globar Village room interior",
+    alt: "Global Village room interior",
     title: "Room Interior",
     category: "Accommodation",
   },
   {
     id: 6,
     src: "/room2.jpg",
-    alt: "Globar Village guest room",
+    alt: "Global Village guest room",
     title: "Guest Room",
     category: "Accommodation",
   },
   {
     id: 7,
     src: "/bar.jpg",
-    alt: "Globar Village bar and lounge",
+    alt: "Global Village bar and lounge",
     title: "Bar and Lounge",
     category: "Dining",
   },
   {
     id: 8,
     src: "/globa.png",
-    alt: "Globar Village property view",
-    title: "Globar Village",
+    alt: "Global Village property view",
+    title: "Global Village",
     category: "Property",
   },
 ];
@@ -227,7 +227,7 @@ const GallerySection = () => {
             <h2 className="mb-5 font-display text-3xl leading-tight text-black md:text-5xl">
               Discover
               <span className="italic text-[#16AEE5]">
-                {" "}Globar Village.
+                {" "}Global Village.
               </span>
             </h2>
 

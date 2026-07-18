@@ -170,7 +170,7 @@ const ReservationSection = () => {
 
             <p className="mx-auto mb-9 max-w-xl leading-7 text-white/65">
               Contact our team to check availability and
-              reserve your apartment at Globar Village.
+              reserve your apartment at Global Village.
             </p>
 
             {/* Reservation benefits */}

@@ -161,7 +161,7 @@ const ExperiencesSection = () => {
 
             <p className="mx-auto max-w-2xl text-sm leading-7 text-white/60 md:text-base">
               Important information about your stay at
-              Globar Village Apartment.
+              Global Village Apartment.
             </p>
           </Reveal>
 

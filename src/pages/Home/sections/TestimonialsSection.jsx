@@ -219,7 +219,7 @@ const TestimonialsSection = () => {
                 </p>
 
                 <p className="text-xs text-white/50">
-                  Guest experiences at Globar Village
+                  Guest experiences at Global Village
                   Apartment
                 </p>
               </div>

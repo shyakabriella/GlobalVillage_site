@@ -1,4 +1,4 @@
-export const BRAND = "GLOBAR VILLAGE APRTMENT LTD";
+export const BRAND = "Global VILLAGE APRTMENT LTD";
 export const MAIN_IMAGE = "/glb.jpg";
 
 export const apartments = [
@@ -45,7 +45,7 @@ export const testimonials = [
     name: "Marc Dubois",
     location: "Paris",
     text:
-      "We enjoyed the privacy and convenience. Globar Village truly felt like our home in Kigali.",
+      "We enjoyed the privacy and convenience. Global Village truly felt like our home in Kigali.",
   },
   {
     name: "Aiko Tanaka",

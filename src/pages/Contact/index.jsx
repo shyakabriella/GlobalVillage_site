@@ -124,7 +124,7 @@ const Contact = () => {
       .join(" ");
 
     const whatsappMessage = [
-      "Hello Globar Village Apartment,",
+      "Hello Global Village Apartment,",
       "",
       `Name: ${fullName}`,
       `Email: ${form.email}`,
@@ -288,7 +288,7 @@ const Contact = () => {
               <h1 className="mb-5 font-display text-4xl leading-tight md:text-6xl">
                 Contact
                 <span className="block italic text-[#16AEE5]">
-                  Globar Village.
+                  Global Village.
                 </span>
               </h1>
 

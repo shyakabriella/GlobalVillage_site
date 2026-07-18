@@ -11,8 +11,8 @@ import {
 
 import { cn } from "../lib/utils";
 
-export const BRAND = "GLOBAR VILLAGE APRTMENT LTD";
-export const BRAND_SHORT = "GLOBAR VILLAGE";
+export const BRAND = "Global VILLAGE APRTMENT LTD";
+export const BRAND_SHORT = "Global VILLAGE";
 
 const PHONE_DISPLAY = "+250 786 063 441";
 const PHONE_LINK = "+250786063441";

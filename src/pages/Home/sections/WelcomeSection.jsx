@@ -152,7 +152,7 @@ const WelcomeSection = () => {
             <div className="relative z-10 flex h-[420px] items-center justify-center overflow-hidden border border-black/10 bg-[#F2FAFD] p-3 shadow-2xl md:h-[560px]">
               <img
                 src={MAIN_IMAGE}
-                alt="Welcome to Globar Village"
+                alt="Welcome to Global Village"
                 loading="lazy"
                 className="h-full w-full object-contain object-center"
               />
@@ -190,7 +190,7 @@ const WelcomeSection = () => {
                 Welcome to
 
                 <span className="block italic text-[#16AEE5]">
-                  Globar Village.
+                  Global Village.
                 </span>
               </h2>
 

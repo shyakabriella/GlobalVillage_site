@@ -76,7 +76,7 @@ const SiteFooter = () => {
             <Link
               to="/"
               className="inline-flex items-center gap-4"
-              aria-label="Globar Village home"
+              aria-label="Global Village home"
             >
               <img
                 src="/logo.png"

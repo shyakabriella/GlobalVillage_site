@@ -289,7 +289,7 @@ const About = () => {
               <h1 className="mb-6 max-w-4xl font-display text-4xl leading-tight md:text-6xl">
                 About
                 <span className="block italic text-[#16AEE5]">
-                  Globar Village Apartment.
+                  Global Village Apartment.
                 </span>
               </h1>
 
@@ -543,7 +543,7 @@ const About = () => {
           >
             <img
               src={images.rooftop}
-              alt="Globar Village Apartment rooftop"
+              alt="Global Village Apartment rooftop"
               loading="lazy"
               className="h-full w-full object-cover"
             />
@@ -644,7 +644,7 @@ const About = () => {
           >
             <img
               src={images.room}
-              alt="Room at Globar Village Apartment"
+              alt="Room at Global Village Apartment"
               loading="lazy"
               className="h-full w-full object-cover"
             />
