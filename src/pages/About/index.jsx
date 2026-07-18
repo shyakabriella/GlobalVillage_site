@@ -1,187 +1,710 @@
 import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Bath,
+  BedDouble,
+  Building2,
+  Car,
+  CheckCircle2,
+  Clock3,
+  CookingPot,
+  Home,
+  Languages,
+  MapPin,
+  Plane,
+  ShieldCheck,
+  Sparkles,
+  Wifi,
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Award, Heart, Users, Globe, Home, Coffee, Gift } from "lucide-react";
-import SiteNav, { BRAND } from "@/components/SiteNav";
+import SiteNav, {
+  BRAND,
+} from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-const hero = "/Danakigali-photos-021.jpg";
-const terrace = "/Danakigali-photos-008.jpg";
-const dining = "/Danakigali-photos-011.jpg";
-const team1 = "/Danakigali-photos-013.jpg";
-const team2 = "/Danakigali-photos-014.jpg";
-const team3 = "/Danakigali-photos-015.jpg";
+import Reveal from "@/components/Reveal";
+
+const images = {
+  hero: "/glb.jpg",
+  building: "/glbside.jpg",
+  rooftop: "/glbrooftop.jpg",
+  room: "/room.jpg",
+  roomOne: "/room1.jpg",
+  roomTwo: "/room2.jpg",
+  bar: "/bar.jpg",
+};
+
+const propertyStats = [
+  {
+    icon: BedDouble,
+    value: "20",
+    label: "Bedrooms",
+  },
+  {
+    icon: Bath,
+    value: "20",
+    label: "Bathrooms",
+  },
+  {
+    icon: Home,
+    value: "22",
+    label: "Beds",
+  },
+  {
+    icon: Plane,
+    value: "2 km",
+    label: "From the Airport",
+  },
+];
 
 const values = [
-  { icon: Heart, title: "Kindness", text: "Inspired by Dana's spirit of warmth and care, we welcome every guest with genuine kindness." },
-  { icon: Users, title: "Family", text: "Just as Dana's home was a place of togetherness, we treat every guest as part of our family." },
-  { icon: Globe, title: "Culture", text: "A rich blend of African, Nubian, Arab, and Islamic hospitality in the heart of Rwanda." },
-  { icon: Home, title: "Home", text: "A place where everyone feels welcomed, cared for, and truly at home." },
-  { icon: Coffee, title: "Comfort", text: "Comfortable accommodation designed for relaxation, peace, and memorable moments." },
-  { icon: Gift, title: "Heritage", text: "Carrying forward a legacy of hospitality from the banks of the River Nile to Kigali." },
+  {
+    icon: Home,
+    title: "Fully Furnished",
+    text:
+      "Contemporary rooms and spacious living areas designed for comfortable daily living.",
+  },
+  {
+    icon: Clock3,
+    title: "Flexible Stays",
+    text:
+      "Suitable for business trips, holidays, short visits and extended stays.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Privacy and Security",
+    text:
+      "A secure and private property where guests can relax with confidence.",
+  },
+  {
+    icon: Wifi,
+    title: "Free Wi-Fi",
+    text:
+      "Reliable high-speed internet is available throughout the property.",
+  },
+  {
+    icon: CookingPot,
+    title: "Modern Kitchen",
+    text:
+      "Prepare and store your food conveniently in a private kitchen.",
+  },
+  {
+    icon: Sparkles,
+    title: "Wellness Facilities",
+    text:
+      "Relax with convenient sauna, pool and fitness facilities.",
+  },
 ];
 
-const team = [
-  { img: team1, name: "Aminata Nkusi", role: "General Manager" },
-  { img: team2, name: "Jean-Paul Mugabe", role: "Executive Chef" },
-  { img: team3, name: "Fatima Hassan", role: "Guest Experience" },
+const propertyFeatures = [
+  "Private balconies and terrace",
+  "Garden and property views",
+  "Private kitchen and washing machine",
+  "Flat-screen television",
+  "Free private parking",
+  "On-site supermarket",
 ];
 
-const milestones = [
-  { year: "1800s", text: "Dana is born in a Nubian village on the western bank of the River Nile in northern Sudan." },
-  { year: "Heritage", text: "Dana becomes known for her kindness, unity, and love for family — her home welcomes all." },
-  { year: "Today", text: "DANA KIGALI HOTEL opens in Kigali, Rwanda, carrying her spirit into the Land of a Thousand Hills." },
-  { year: "Future", text: "Welcoming guests from around the world as part of the DANA family." },
+const locationPoints = [
+  {
+    title: "Kigali International Airport",
+    description:
+      "Approximately 2 kilometres from the property.",
+  },
+  {
+    title: "Presidential Palace Museum",
+    description:
+      "Approximately a 12-minute walk away.",
+  },
+  {
+    title: "Kigali City Centre",
+    description:
+      "Convenient road access to the city centre.",
+  },
+  {
+    title: "Local Amenities",
+    description:
+      "Close to supermarkets, transport and daily services.",
+  },
 ];
 
 const About = () => {
   return (
-    <div className="bg-background text-foreground">
-      <SiteNav />
+    <>
+      <style>
+        {`
+          @keyframes aboutHeroEntrance {
+            from {
+              opacity: 0;
+              transform: translateY(35px);
+            }
 
-      {/* Page hero */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-end">
-        <img src={hero} alt={`${BRAND}`} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="container relative z-10 text-cream pb-16">
-          <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR STORY</p>
-          <h1 className="font-display text-4xl md:text-6xl">About {BRAND}</h1>
-          <nav className="mt-6 text-sm text-cream/70">
-            <Link to="/" className="hover:text-gold">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-cream">About</span>
-          </nav>
-        </div>
-      </section>
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
 
-      {/* Story */}
-      <section className="py-16 container grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <p className="text-gold tracking-[0.3em] text-sm mb-4">— WELCOME</p>
-          <h2 className="font-display text-3xl md:text-4xl leading-tight mb-6">Your Home Away from Home.</h2>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <p>
-              <strong className="text-foreground font-display text-xl">DANA KIGALI HOTEL is more than just a place to stay.</strong> It is a story of family, culture, hospitality, and kindness, carried from the banks of the River Nile to the beautiful land of a thousand hills (Rwanda).
-            </p>
-            <p>
-              Inspired by Dana, a remarkable woman born more than 150 years ago in a Nubian village on the western bank of the River Nile in northern Sudan, our hotel represents the true meaning of home. Dana was known for her kindness, unity, and love for family. Her home was a place where everyone felt welcomed, cared for, and treated as part of the family.
-            </p>
-            <p>
-              That same spirit lives on at DANA KIGALI HOTEL.
-            </p>
-            <p>
-              Located in Kigali, Rwanda, DANA KIGALI brings together the rich heritage of African, Nubian, Arab, and Islamic hospitality with the beauty and warmth of Rwanda. Just as Dana's home was a place of togetherness, comfort, and belonging, our hotel is designed to make every guest feel relaxed, valued, and truly at home.
-            </p>
-            <p>
-              Whether you are visiting Kigali for business, leisure, family travel, or a short stay, DANA KIGALI HOTEL offers a welcoming atmosphere, comfortable accommodation, and personal service inspired by deeply rooted values of hospitality and care.
-            </p>
-            <p>
-              For us, hospitality is beyond business. It is about welcoming you with kindness, treating you like family, and creating a stay filled with comfort, peace, and memorable moments.
-            </p>
-            <p className="text-foreground font-medium">
-              At DANA KIGALI HOTEL, you are not only our guest — you are part of our family.
-            </p>
-            <p className="text-gold font-display text-xl">Please feel at home.</p>
+          @keyframes aboutImageEntrance {
+            from {
+              opacity: 0;
+              transform:
+                translateX(40px)
+                scale(0.97);
+            }
+
+            to {
+              opacity: 1;
+              transform:
+                translateX(0)
+                scale(1);
+            }
+          }
+
+          @keyframes aboutCardEntrance {
+            from {
+              opacity: 0;
+              transform: translateY(25px);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes aboutLineGrow {
+            from {
+              width: 0;
+            }
+
+            to {
+              width: 52px;
+            }
+          }
+
+          @keyframes aboutBadgeFloat {
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+
+            50% {
+              transform: translateY(-7px);
+            }
+          }
+
+          @keyframes aboutLightMove {
+            from {
+              transform: translateX(-180%);
+            }
+
+            to {
+              transform: translateX(280%);
+            }
+          }
+
+          .about-hero-content {
+            animation:
+              aboutHeroEntrance 1s
+              ease-out both;
+          }
+
+          .about-image {
+            animation:
+              aboutImageEntrance 1s
+              ease-out both;
+          }
+
+          .about-card {
+            opacity: 0;
+            animation:
+              aboutCardEntrance 0.7s
+              ease-out forwards;
+          }
+
+          .about-line {
+            animation:
+              aboutLineGrow 1s
+              ease-out forwards;
+          }
+
+          .about-badge {
+            animation:
+              aboutBadgeFloat 4s
+              ease-in-out infinite;
+          }
+
+          .about-light {
+            animation:
+              aboutLightMove 8s
+              linear infinite;
+          }
+
+          @media (
+            prefers-reduced-motion: reduce
+          ) {
+            .about-hero-content,
+            .about-image,
+            .about-card,
+            .about-line,
+            .about-badge,
+            .about-light {
+              animation: none;
+              opacity: 1;
+            }
+          }
+        `}
+      </style>
+
+      <div className="bg-white text-black">
+        <SiteNav />
+
+        {/* Hero */}
+        <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-black pb-16 pt-36 text-white md:pb-20">
+          <div className="absolute inset-0">
+            <img
+              src={images.hero}
+              alt={`${BRAND} building`}
+              className="h-full w-full object-cover object-center"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/65 to-black/20" />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/25" />
           </div>
-          <div className="grid grid-cols-2 gap-6 mt-10">
-            {[{ n: "1,000", l: "Hills of Rwanda" }, { n: "Family", l: "You are part of it" }].map((s) => (
-              <div key={s.l} className="border-t-2 border-gold pt-4">
-                <div className="font-display text-4xl">{s.n}</div>
-                <div className="text-xs text-muted-foreground mt-1 tracking-wider uppercase">{s.l}</div>
+
+          <div className="about-light pointer-events-none absolute bottom-0 top-0 w-48 -skew-x-12 bg-gradient-to-r from-transparent via-[#16AEE5]/10 to-transparent blur-xl" />
+
+          <div className="container relative z-10">
+            <div className="about-hero-content max-w-4xl">
+              <div className="mb-6 flex items-center gap-4">
+                <div className="about-line h-px bg-[#16AEE5]" />
+
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#16AEE5]">
+                  Our Story
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="relative">
-          <img src={terrace} alt="DANA KIGALI HOTEL terrace" loading="lazy" className="w-full h-[600px] object-cover" />
-          <div className="absolute -top-8 -left-8 hidden md:flex bg-gold text-navy-deep p-6 items-center gap-3">
-            <Award className="w-8 h-8" />
-            <div className="text-sm font-semibold leading-tight">Home Away<br />From Home</div>
-          </div>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="py-16 bg-cream">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR VALUES</p>
-            <h2 className="font-display text-3xl md:text-4xl">The spirit of Dana, in everything we do.</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {values.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="bg-background p-10">
-                <Icon className="w-10 h-10 text-gold mb-5" strokeWidth={1.5} />
-                <h3 className="font-display text-2xl mb-3">{title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <h1 className="mb-6 max-w-4xl font-display text-4xl leading-tight md:text-6xl">
+                About
+                <span className="block italic text-[#16AEE5]">
+                  Globar Village Apartment.
+                </span>
+              </h1>
 
-      {/* Heritage */}
-      <section className="py-16 bg-navy-deep text-cream">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR HERITAGE</p>
-            <h2 className="font-display text-3xl md:text-4xl">A legacy from the Nile to the hills.</h2>
-          </div>
-          <div className="relative max-w-3xl mx-auto">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-cream/20" />
-            <div className="space-y-12">
-              {milestones.map((m, i) => (
-                <div key={m.year} className={`relative flex ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-start gap-6`}>
-                  <div className="md:w-1/2 pl-12 md:pl-0 md:px-8">
-                    <div className="font-display text-3xl text-gold mb-2">{m.year}</div>
-                    <p className="text-cream/80 leading-relaxed">{m.text}</p>
-                  </div>
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 bg-gold rounded-full mt-3" />
-                  <div className="hidden md:block md:w-1/2" />
-                </div>
-              ))}
+              <p className="max-w-2xl text-base leading-8 text-white/70 md:text-lg">
+                Fully furnished apartments offering
+                flexible, comfortable and convenient stays
+                in Kigali, Rwanda.
+              </p>
+
+              <nav className="mt-8 flex items-center gap-3 text-xs uppercase tracking-[0.18em]">
+                <Link
+                  to="/"
+                  className="text-white/55 transition-colors hover:text-[#16AEE5]"
+                >
+                  Home
+                </Link>
+
+                <span className="text-[#16AEE5]">
+                  /
+                </span>
+
+                <span className="text-white">
+                  About
+                </span>
+              </nav>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Team */}
-      {/*
-      <section className="py-32 container">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-gold tracking-[0.3em] text-sm mb-4">— OUR FAMILY</p>
-          <h2 className="font-display text-4xl md:text-5xl">A team that welcomes you home.</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {team.map((m) => (
-            <figure key={m.name} className="group">
-              <div className="overflow-hidden bg-cream">
-                <img src={m.img} alt={m.name} loading="lazy" className="w-full h-[420px] object-cover grayscale group-hover:grayscale-0 transition duration-700" />
+          <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#16AEE5] via-[#16AEE5]/60 to-transparent" />
+        </section>
+
+        {/* Welcome and story */}
+        <section className="relative overflow-hidden py-20 md:py-28">
+          <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-[#16AEE5]/10 blur-3xl" />
+
+          <div className="container relative z-10 grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <div className="mb-6 flex items-center gap-4">
+                <div className="about-line h-px bg-[#16AEE5]" />
+
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#16AEE5]">
+                  Welcome
+                </p>
               </div>
-              <figcaption className="mt-5">
-                <h3 className="font-display text-2xl">{m.name}</h3>
-                <p className="text-sm text-gold tracking-widest uppercase mt-1">{m.role}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-      */}
 
-      {/* CTA */}
-      <section className="grid md:grid-cols-2 min-h-[350px]">
-        <img src={dining} alt="Dining at DANA KIGALI HOTEL" loading="lazy" className="w-full h-full object-cover min-h-[300px]" />
-        <div className="bg-navy text-cream p-12 md:p-16 flex flex-col justify-center">
-          <p className="text-gold tracking-[0.3em] text-sm mb-4">— COME STAY</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-6">A warm welcome is waiting.</h2>
-          <p className="text-cream/70 mb-8 leading-relaxed max-w-md">Reserve a room and experience the true meaning of home in the heart of Kigali.</p>
-          <div className="flex gap-4 flex-wrap">
-            <Button className="bg-gold hover:bg-gold-light text-navy-deep rounded-none px-8">Reserve a Stay</Button>
-            <Link to="/"><Button variant="outline" className="border-cream text-cream bg-transparent hover:bg-cream hover:text-navy-deep rounded-none px-8">Back to Home</Button></Link>
+              <h2 className="mb-7 font-display text-3xl leading-tight md:text-5xl">
+                Comfort and convenience
+                <span className="block italic text-[#16AEE5]">
+                  in the heart of Kigali.
+                </span>
+              </h2>
+
+              <div className="space-y-5 leading-8 text-black/65">
+                <p>
+                  <strong className="font-display text-xl text-black">
+                    {BRAND}
+                  </strong>{" "}
+                  is a fully furnished, flexible-stay
+                  apartment property in Kanombe, Kigali.
+                </p>
+
+                <p>
+                  Our accommodation is suitable for
+                  business travellers, families, leisure
+                  visitors and guests planning extended
+                  stays.
+                </p>
+
+                <p>
+                  Guests enjoy comfortable rooms,
+                  contemporary furnishings, spacious living
+                  areas, private kitchens and outdoor spaces
+                  with pleasant views.
+                </p>
+              </div>
+
+              <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                {propertyFeatures.map(
+                  (feature, index) => (
+                    <li
+                      key={feature}
+                      className="about-card flex items-center gap-3"
+                      style={{
+                        animationDelay: `${
+                          index * 0.1
+                        }s`,
+                      }}
+                    >
+                      <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#16AEE5]/10">
+                        <CheckCircle2 className="h-4 w-4 text-[#16AEE5]" />
+                      </span>
+
+                      <span className="text-sm text-black/65">
+                        {feature}
+                      </span>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </Reveal>
+
+            <Reveal
+              animation="scale-in"
+              className="about-image relative"
+            >
+              <div className="absolute -bottom-5 -right-5 hidden h-full w-full border border-black/20 md:block" />
+
+              <div className="relative z-10 flex h-[470px] items-center justify-center overflow-hidden bg-[#F4FBFE] p-2 shadow-2xl md:h-[620px]">
+                <img
+                  src={images.building}
+                  alt={`${BRAND} exterior`}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+
+              <div className="about-badge absolute bottom-7 left-7 z-20 bg-black px-7 py-5 text-white shadow-2xl">
+                <Building2 className="mb-3 h-7 w-7 text-[#16AEE5]" />
+
+                <p className="font-display text-xl">
+                  Flexible Living
+                </p>
+
+                <p className="mt-1 text-xs text-white/50">
+                  Short and extended stays
+                </p>
+              </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <SiteFooter />
-    </div>
+        {/* Property statistics */}
+        <section className="bg-black py-14 text-white">
+          <div className="container grid grid-cols-2 gap-px bg-white/15 md:grid-cols-4">
+            {propertyStats.map(
+              (
+                {
+                  icon: Icon,
+                  value,
+                  label,
+                },
+                index,
+              ) => (
+                <Reveal
+                  key={label}
+                  delay={index * 90}
+                  className="bg-black"
+                >
+                  <div className="group flex min-h-44 flex-col items-center justify-center p-6 text-center transition-colors duration-500 hover:bg-[#16AEE5]">
+                    <Icon
+                      className="mb-4 h-8 w-8 text-[#16AEE5] transition-colors group-hover:text-black"
+                      strokeWidth={1.5}
+                    />
+
+                    <p className="font-display text-4xl text-white transition-colors group-hover:text-black">
+                      {value}
+                    </p>
+
+                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 transition-colors group-hover:text-black/60">
+                      {label}
+                    </p>
+                  </div>
+                </Reveal>
+              ),
+            )}
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="relative overflow-hidden bg-[#F4FBFE] py-20 md:py-24">
+          <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#16AEE5]/10 blur-3xl" />
+
+          <div className="container relative z-10">
+            <Reveal className="mx-auto mb-14 max-w-3xl text-center">
+              <div className="mb-5 flex items-center justify-center gap-4">
+                <div className="about-line h-px bg-[#16AEE5]" />
+
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#16AEE5]">
+                  What We Offer
+                </p>
+
+                <div className="about-line h-px bg-[#16AEE5]" />
+              </div>
+
+              <h2 className="mb-5 font-display text-3xl md:text-5xl">
+                Designed around
+                <span className="italic text-[#16AEE5]">
+                  {" "}your stay.
+                </span>
+              </h2>
+
+              <p className="mx-auto max-w-2xl leading-7 text-black/60">
+                Modern facilities, flexible accommodation
+                and dependable guest support.
+              </p>
+            </Reveal>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {values.map(
+                (
+                  {
+                    icon: Icon,
+                    title,
+                    text,
+                  },
+                  index,
+                ) => (
+                  <Reveal
+                    key={title}
+                    delay={index * 80}
+                  >
+                    <article
+                      className="about-card group relative h-full overflow-hidden border border-black/10 bg-white p-8 transition-all duration-500 hover:-translate-y-3 hover:border-[#16AEE5] hover:shadow-2xl"
+                      style={{
+                        animationDelay: `${
+                          index * 0.1
+                        }s`,
+                      }}
+                    >
+                      <div className="absolute left-0 top-0 h-1 w-0 bg-[#16AEE5] transition-all duration-500 group-hover:w-full" />
+
+                      <div className="mb-6 flex h-14 w-14 items-center justify-center bg-[#16AEE5]/10 transition-colors group-hover:bg-[#16AEE5]">
+                        <Icon
+                          className="h-7 w-7 text-[#16AEE5] transition-colors group-hover:text-black"
+                          strokeWidth={1.5}
+                        />
+                      </div>
+
+                      <h3 className="mb-3 font-display text-xl">
+                        {title}
+                      </h3>
+
+                      <p className="text-sm leading-7 text-black/60">
+                        {text}
+                      </p>
+                    </article>
+                  </Reveal>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Location */}
+        <section className="grid bg-white lg:grid-cols-2">
+          <Reveal
+            animation="scale-in"
+            className="min-h-[420px] lg:min-h-[650px]"
+          >
+            <img
+              src={images.rooftop}
+              alt="Globar Village Apartment rooftop"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </Reveal>
+
+          <div className="flex items-center px-7 py-16 md:px-14 lg:px-20">
+            <Reveal>
+              <div className="mb-6 flex items-center gap-4">
+                <div className="about-line h-px bg-[#16AEE5]" />
+
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#16AEE5]">
+                  Our Location
+                </p>
+              </div>
+
+              <h2 className="mb-6 font-display text-3xl leading-tight md:text-5xl">
+                Conveniently located
+                <span className="block italic text-[#16AEE5]">
+                  in Kanombe.
+                </span>
+              </h2>
+
+              <div className="mb-8 flex items-start gap-4 border-l-4 border-[#16AEE5] bg-[#F4FBFE] p-5">
+                <MapPin className="mt-1 h-6 w-6 flex-none text-[#16AEE5]" />
+
+                <div>
+                  <p className="font-semibold">
+                    KK 177 St, Kanombe
+                  </p>
+
+                  <p className="text-sm text-black/55">
+                    Kigali, Rwanda
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                {locationPoints.map(
+                  (
+                    {
+                      title,
+                      description,
+                    },
+                    index,
+                  ) => (
+                    <div
+                      key={title}
+                      className="about-card flex gap-4 border-b border-black/10 pb-5"
+                      style={{
+                        animationDelay: `${
+                          index * 0.1
+                        }s`,
+                      }}
+                    >
+                      <span className="flex h-8 w-8 flex-none items-center justify-center bg-black text-xs font-bold text-[#16AEE5]">
+                        {index + 1}
+                      </span>
+
+                      <div>
+                        <h3 className="font-display text-lg">
+                          {title}
+                        </h3>
+
+                        <p className="mt-1 text-sm leading-6 text-black/55">
+                          {description}
+                        </p>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {[
+                  "English",
+                  "French",
+                  "Swahili",
+                ].map((language) => (
+                  <span
+                    key={language}
+                    className="inline-flex items-center gap-2 border border-[#16AEE5] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em]"
+                  >
+                    <Languages className="h-4 w-4 text-[#16AEE5]" />
+
+                    {language}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="grid min-h-[420px] lg:grid-cols-2">
+          <Reveal
+            animation="scale-in"
+            className="min-h-[320px]"
+          >
+            <img
+              src={images.room}
+              alt="Room at Globar Village Apartment"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </Reveal>
+
+          <div className="relative flex flex-col justify-center overflow-hidden bg-black p-10 text-white md:p-16 lg:p-20">
+            <div className="pointer-events-none absolute -right-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#16AEE5]/20 blur-3xl" />
+
+            <Reveal className="relative z-10">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#16AEE5]">
+                Plan Your Stay
+              </p>
+
+              <h2 className="mb-6 font-display text-3xl leading-tight md:text-5xl">
+                Your Kigali apartment
+                <span className="block italic text-[#16AEE5]">
+                  is waiting.
+                </span>
+              </h2>
+
+              <p className="mb-8 max-w-lg leading-7 text-white/60">
+                Contact our management team to check
+                availability, discuss your stay and reserve
+                your apartment.
+              </p>
+
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group rounded-none bg-[#16AEE5] px-9 text-black hover:bg-white"
+                >
+                  <Link
+                    to="/contact"
+                    className="flex items-center gap-3"
+                  >
+                    Check Availability
+
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="rounded-none border-white/50 bg-transparent px-9 text-white hover:bg-white hover:text-black"
+                >
+                  <Link to="/">
+                    Back to Home
+                  </Link>
+                </Button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <SiteFooter />
+      </div>
+    </>
   );
 };
 
