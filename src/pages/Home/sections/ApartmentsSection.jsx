@@ -17,11 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/Reveal";
 
-/*
-|--------------------------------------------------------------------------
-| Twelve Apartment Houses
-|--------------------------------------------------------------------------
-*/
+const SELECTED_APARTMENT_KEY = "global-village-selected-apartment";
 
 const apartmentHouses = [
   {
@@ -206,12 +202,6 @@ const apartmentHouses = [
   },
 ];
 
-/*
-|--------------------------------------------------------------------------
-| Property Statistics
-|--------------------------------------------------------------------------
-*/
-
 const apartmentStats = [
   {
     icon: Building2,
@@ -234,12 +224,6 @@ const apartmentStats = [
     label: "Guest Capacity",
   },
 ];
-
-/*
-|--------------------------------------------------------------------------
-| Shared Facilities
-|--------------------------------------------------------------------------
-*/
 
 const facilities = [
   {
@@ -267,6 +251,20 @@ const facilities = [
     label: "Flat-Screen TV",
   },
 ];
+
+const saveSelectedApartment = (apartment) => {
+  try {
+    window.sessionStorage.setItem(
+      SELECTED_APARTMENT_KEY,
+      JSON.stringify(apartment),
+    );
+  } catch (error) {
+    console.error(
+      "Unable to save the selected apartment:",
+      error,
+    );
+  }
+};
 
 const ApartmentsSection = () => {
   return (
@@ -345,9 +343,7 @@ const ApartmentsSection = () => {
               ease-in-out infinite;
           }
 
-          @media (
-            prefers-reduced-motion: reduce
-          ) {
+          @media (prefers-reduced-motion: reduce) {
             .apartment-house-card,
             .apartment-facility,
             .apartment-moving-line,
@@ -364,13 +360,10 @@ const ApartmentsSection = () => {
         id="apartments"
         className="relative overflow-hidden bg-[#F4FBFE] py-20 md:py-28"
       >
-        {/* Background decoration */}
         <div className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-[#16AEE5]/10 blur-3xl" />
-
         <div className="pointer-events-none absolute -right-40 bottom-32 h-96 w-96 rounded-full bg-[#16AEE5]/10 blur-3xl" />
 
         <div className="container relative z-10">
-          {/* Section heading */}
           <Reveal className="mx-auto mb-12 max-w-4xl text-center">
             <div className="mb-5 flex items-center justify-center gap-4">
               <div className="h-px w-12 bg-[#16AEE5]" />
@@ -391,13 +384,12 @@ const ApartmentsSection = () => {
             </h2>
 
             <p className="mx-auto max-w-3xl text-sm leading-7 text-black/65 md:text-base">
-              Explore our modern rooms and private apartment
-              houses, designed to provide comfort, privacy and
-              a relaxing stay in Kigali.
+              Select an apartment house to view your choice on
+              the reservation page and send an availability
+              inquiry.
             </p>
           </Reveal>
 
-          {/* Statistics */}
           <Reveal className="mb-16">
             <div className="grid grid-cols-2 overflow-hidden border border-black/10 bg-white shadow-lg lg:grid-cols-4">
               {apartmentStats.map(
@@ -432,11 +424,10 @@ const ApartmentsSection = () => {
             </div>
           </Reveal>
 
-          {/* Cards heading */}
           <Reveal className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#16AEE5]">
-                Explore Every House
+                Select Your House
               </p>
 
               <h3 className="font-display text-3xl text-black md:text-4xl">
@@ -445,168 +436,153 @@ const ApartmentsSection = () => {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-black/60">
-              View our comfortable rooms, bathrooms and
-              accommodation capacity for every apartment
-              house.
+              Click the apartment image or the selection button.
+              Your chosen house will appear automatically on the
+              contact page.
             </p>
           </Reveal>
 
-          {/* Apartment cards */}
           <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-            {apartmentHouses.map(
-              (
-                {
-                  id,
-                  number,
-                  name,
-                  type,
-                  rooms,
-                  bathrooms,
-                  guests,
-                  image,
-                  features,
-                },
-                index,
-              ) => (
-                <Reveal
-                  key={id}
-                  delay={(index % 3) * 100}
+            {apartmentHouses.map((apartment, index) => (
+              <Reveal
+                key={apartment.id}
+                delay={(index % 3) * 100}
+              >
+                <article
+                  className="apartment-house-card group flex h-full flex-col overflow-hidden border border-black/10 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:border-[#16AEE5] hover:shadow-2xl"
+                  style={{
+                    animationDelay: `${
+                      (index % 4) * 0.12
+                    }s`,
+                  }}
                 >
-                  <article
-                    className="apartment-house-card group flex h-full flex-col overflow-hidden border border-black/10 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:border-[#16AEE5] hover:shadow-2xl"
-                    style={{
-                      animationDelay: `${
-                        (index % 4) * 0.12
-                      }s`,
-                    }}
+                  <Link
+                    to={`/contact?house=${apartment.id}`}
+                    onClick={() =>
+                      saveSelectedApartment(apartment)
+                    }
+                    className="relative block h-72 overflow-hidden bg-black"
+                    aria-label={`Select ${apartment.name}`}
                   >
-                    {/* Room image */}
-                    <div className="relative h-72 overflow-hidden bg-black">
-                      <img
-                        src={image}
-                        alt={`${name} room`}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-center transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                    <img
+                      src={apartment.image}
+                      alt={`${apartment.name} room`}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-center transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/20" />
+
+                    <div className="apartment-house-number absolute left-5 top-5 flex h-14 w-14 items-center justify-center border border-white/25 bg-black/60 font-display text-xl text-[#16AEE5] backdrop-blur-md">
+                      {apartment.number}
+                    </div>
+
+                    <span className="absolute right-5 top-5 bg-[#16AEE5] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.15em] text-black">
+                      {apartment.type}
+                    </span>
+
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-[#16AEE5]">
+                        Click to select
+                      </p>
+
+                      <h4 className="font-display text-2xl text-white">
+                        {apartment.name}
+                      </h4>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 h-1 w-full overflow-hidden bg-white/20">
+                      <div className="apartment-moving-line h-full w-1/3 bg-[#16AEE5]" />
+                    </div>
+                  </Link>
+
+                  <div className="grid grid-cols-3 border-b border-black/10 bg-[#F4FBFE]">
+                    <div className="flex flex-col items-center justify-center border-r border-black/10 px-2 py-4 text-center">
+                      <BedDouble
+                        className="mb-2 h-5 w-5 text-[#16AEE5]"
+                        strokeWidth={1.5}
                       />
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/20" />
+                      <strong className="text-sm text-black">
+                        {apartment.rooms}
+                      </strong>
 
-                      {/* Apartment number */}
-                      <div className="apartment-house-number absolute left-5 top-5 flex h-14 w-14 items-center justify-center border border-white/25 bg-black/60 font-display text-xl text-[#16AEE5] backdrop-blur-md">
-                        {number}
-                      </div>
-
-                      {/* House type */}
-                      <span className="absolute right-5 top-5 bg-[#16AEE5] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.15em] text-black">
-                        {type}
+                      <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
+                        {apartment.rooms === 1
+                          ? "Room"
+                          : "Rooms"}
                       </span>
-
-                      {/* Apartment name */}
-                      <div className="absolute bottom-5 left-5 right-5">
-                        <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-[#16AEE5]">
-                          Private Accommodation
-                        </p>
-
-                        <h4 className="font-display text-2xl text-white">
-                          {name}
-                        </h4>
-                      </div>
-
-                      {/* Animated bottom line */}
-                      <div className="absolute bottom-0 left-0 h-1 w-full overflow-hidden bg-white/20">
-                        <div className="apartment-moving-line h-full w-1/3 bg-[#16AEE5]" />
-                      </div>
                     </div>
 
-                    {/* Apartment details */}
-                    <div className="grid grid-cols-3 border-b border-black/10 bg-[#F4FBFE]">
-                      <div className="flex flex-col items-center justify-center border-r border-black/10 px-2 py-4 text-center">
-                        <BedDouble
-                          className="mb-2 h-5 w-5 text-[#16AEE5]"
-                          strokeWidth={1.5}
-                        />
+                    <div className="flex flex-col items-center justify-center border-r border-black/10 px-2 py-4 text-center">
+                      <Bath
+                        className="mb-2 h-5 w-5 text-[#16AEE5]"
+                        strokeWidth={1.5}
+                      />
 
-                        <strong className="text-sm text-black">
-                          {rooms}
-                        </strong>
+                      <strong className="text-sm text-black">
+                        {apartment.bathrooms}
+                      </strong>
 
-                        <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
-                          {rooms === 1
-                            ? "Room"
-                            : "Rooms"}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-col items-center justify-center border-r border-black/10 px-2 py-4 text-center">
-                        <Bath
-                          className="mb-2 h-5 w-5 text-[#16AEE5]"
-                          strokeWidth={1.5}
-                        />
-
-                        <strong className="text-sm text-black">
-                          {bathrooms}
-                        </strong>
-
-                        <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
-                          {bathrooms === 1
-                            ? "Bathroom"
-                            : "Bathrooms"}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
-                        <Users
-                          className="mb-2 h-5 w-5 text-[#16AEE5]"
-                          strokeWidth={1.5}
-                        />
-
-                        <strong className="text-sm text-black">
-                          {guests}
-                        </strong>
-
-                        <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
-                          Guests
-                        </span>
-                      </div>
+                      <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
+                        {apartment.bathrooms === 1
+                          ? "Bathroom"
+                          : "Bathrooms"}
+                      </span>
                     </div>
 
-                    {/* Features and button */}
-                    <div className="flex flex-grow flex-col p-6">
-                      <ul className="mb-7 space-y-3">
-                        {features.map((feature) => (
-                          <li
-                            key={feature}
-                            className="flex items-center gap-3 text-sm text-black/70"
-                          >
-                            <CheckCircle2 className="h-4 w-4 flex-none text-[#16AEE5]" />
+                    <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
+                      <Users
+                        className="mb-2 h-5 w-5 text-[#16AEE5]"
+                        strokeWidth={1.5}
+                      />
 
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <strong className="text-sm text-black">
+                        {apartment.guests}
+                      </strong>
 
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="group/button mt-auto h-12 w-full rounded-none border-black bg-white text-black hover:border-[#16AEE5] hover:bg-[#16AEE5] hover:text-black"
-                      >
-                        <Link
-                          to="/contact"
-                          className="flex items-center justify-center gap-3"
+                      <span className="text-[9px] uppercase tracking-[0.12em] text-black/45">
+                        Guests
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-grow flex-col p-6">
+                    <ul className="mb-7 space-y-3">
+                      {apartment.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-center gap-3 text-sm text-black/70"
                         >
-                          Check Availability
+                          <CheckCircle2 className="h-4 w-4 flex-none text-[#16AEE5]" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-2" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </article>
-                </Reveal>
-              ),
-            )}
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="group/button mt-auto h-12 w-full rounded-none border-black bg-white text-black hover:border-[#16AEE5] hover:bg-[#16AEE5] hover:text-black"
+                    >
+                      <Link
+                        to={`/contact?house=${apartment.id}`}
+                        onClick={() =>
+                          saveSelectedApartment(apartment)
+                        }
+                        className="flex items-center justify-center gap-3"
+                      >
+                        Select This House
+
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
 
-          {/* Shared facilities */}
           <Reveal className="mt-16">
             <div className="border border-black/10 bg-white p-7 shadow-lg md:p-10">
               <div className="mx-auto mb-9 max-w-2xl text-center">
@@ -617,12 +593,6 @@ const ApartmentsSection = () => {
                 <h3 className="mb-3 font-display text-2xl text-black md:text-3xl">
                   Facilities available to our guests
                 </h3>
-
-                <p className="text-sm leading-7 text-black/60">
-                  Guests staying in our apartment houses can
-                  enjoy convenient facilities throughout the
-                  property.
-                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -650,24 +620,6 @@ const ApartmentsSection = () => {
                 )}
               </div>
             </div>
-          </Reveal>
-
-          {/* Final button */}
-          <Reveal className="mt-12 text-center">
-            <Button
-              asChild
-              size="lg"
-              className="group h-12 rounded-none bg-black px-10 text-white hover:bg-[#16AEE5] hover:text-black"
-            >
-              <Link
-                to="/rooms"
-                className="flex items-center gap-3"
-              >
-                View All Apartment Details
-
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
-              </Link>
-            </Button>
           </Reveal>
         </div>
       </section>
