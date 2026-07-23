@@ -168,13 +168,7 @@ const WhyChooseUsSection = () => {
               </span>
             </h2>
 
-            <p className="mx-auto max-w-3xl leading-8 text-black/65">
-              Welcome to {BRAND}, a fully furnished and
-              flexible-stay apartment property in Kigali.
-              Whether you are visiting for business,
-              leisure or an extended stay, we provide
-              comfort, convenience and excellent value.
-            </p>
+           
           </Reveal>
 
           {/* Main property features */}

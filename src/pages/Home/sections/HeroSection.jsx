@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -11,10 +12,40 @@ import {
 
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/Reveal";
-import {
-  BRAND,
-  MAIN_IMAGE,
-} from "../homeData";
+import { BRAND } from "../homeData";
+
+/*
+|--------------------------------------------------------------------------
+| Hero Background Images
+|--------------------------------------------------------------------------
+|
+| These images must be inside your public folder:
+|
+| public/aprt5.JPG
+| public/aprt6.JPG
+| public/aprt7.JPG
+| public/fullAprt.JPG
+|
+*/
+
+const heroImages = [
+  {
+    src: "/aprt5.JPG",
+    alt: `${BRAND} apartment exterior`,
+  },
+  {
+    src: "/aprt6.JPG",
+    alt: `${BRAND} modern apartment building`,
+  },
+  {
+    src: "/aprt7.JPG",
+    alt: `${BRAND} comfortable accommodation`,
+  },
+  {
+    src: "/fullAprt.JPG",
+    alt: `${BRAND} complete apartment property`,
+  },
+];
 
 const propertyHighlights = [
   {
@@ -50,55 +81,148 @@ const propertyHighlights = [
 ];
 
 const HeroSection = () => {
+  const [imageIndex, setImageIndex] =
+    useState(0);
+
   const [highlightIndex, setHighlightIndex] =
     useState(0);
 
   const [isVisible, setIsVisible] =
     useState(true);
 
+  const highlightTimeoutRef = useRef(null);
+
+  /*
+  |--------------------------------------------------------------------------
+  | Preload Images
+  |--------------------------------------------------------------------------
+  */
+
   useEffect(() => {
-    let transitionTimer;
+    heroImages.forEach((image) => {
+      const preloadImage = new Image();
+      preloadImage.src = image.src;
+    });
+  }, []);
 
-    const rotationTimer = window.setInterval(() => {
-      setIsVisible(false);
+  /*
+  |--------------------------------------------------------------------------
+  | Automatic Background Image Slider
+  |--------------------------------------------------------------------------
+  */
 
-      transitionTimer = window.setTimeout(() => {
-        setHighlightIndex(
+  useEffect(() => {
+    const imageRotationTimer =
+      window.setInterval(() => {
+        setImageIndex(
           (currentIndex) =>
             (currentIndex + 1) %
-            propertyHighlights.length,
+            heroImages.length,
         );
-
-        setIsVisible(true);
-      }, 550);
-    }, 4000);
+      }, 6500);
 
     return () => {
-      window.clearInterval(rotationTimer);
-      window.clearTimeout(transitionTimer);
+      window.clearInterval(
+        imageRotationTimer,
+      );
+    };
+  }, []);
+
+  /*
+  |--------------------------------------------------------------------------
+  | Automatic Property Highlight Slider
+  |--------------------------------------------------------------------------
+  */
+
+  useEffect(() => {
+    const highlightRotationTimer =
+      window.setInterval(() => {
+        setIsVisible(false);
+
+        if (
+          highlightTimeoutRef.current
+        ) {
+          window.clearTimeout(
+            highlightTimeoutRef.current,
+          );
+        }
+
+        highlightTimeoutRef.current =
+          window.setTimeout(() => {
+            setHighlightIndex(
+              (currentIndex) =>
+                (currentIndex + 1) %
+                propertyHighlights.length,
+            );
+
+            setIsVisible(true);
+          }, 550);
+      }, 4000);
+
+    return () => {
+      window.clearInterval(
+        highlightRotationTimer,
+      );
+
+      if (highlightTimeoutRef.current) {
+        window.clearTimeout(
+          highlightTimeoutRef.current,
+        );
+      }
     };
   }, []);
 
   const activeHighlight =
     propertyHighlights[highlightIndex];
 
+  /*
+  |--------------------------------------------------------------------------
+  | Select Property Highlight
+  |--------------------------------------------------------------------------
+  */
+
   const selectHighlight = (index) => {
+    if (index === highlightIndex) {
+      return;
+    }
+
     setIsVisible(false);
 
-    window.setTimeout(() => {
-      setHighlightIndex(index);
-      setIsVisible(true);
-    }, 350);
+    if (highlightTimeoutRef.current) {
+      window.clearTimeout(
+        highlightTimeoutRef.current,
+      );
+    }
+
+    highlightTimeoutRef.current =
+      window.setTimeout(() => {
+        setHighlightIndex(index);
+        setIsVisible(true);
+      }, 350);
+  };
+
+  /*
+  |--------------------------------------------------------------------------
+  | Select Background Image
+  |--------------------------------------------------------------------------
+  */
+
+  const selectImage = (index) => {
+    if (index === imageIndex) {
+      return;
+    }
+
+    setImageIndex(index);
   };
 
   return (
     <>
       <style>
         {`
-          @keyframes heroImageEntrance {
+          @keyframes heroContentEntrance {
             from {
               opacity: 0;
-              transform: translateY(20px);
+              transform: translateY(28px);
             }
 
             to {
@@ -129,9 +253,21 @@ const HeroSection = () => {
             }
           }
 
-          .hero-image-entrance {
+          @keyframes imageNumberEntrance {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .hero-content-entrance {
             animation:
-              heroImageEntrance 1.2s
+              heroContentEntrance 1.2s
               ease-out both;
           }
 
@@ -147,35 +283,114 @@ const HeroSection = () => {
               ease-out 0.6s both;
           }
 
+          .hero-slide {
+            opacity: 0;
+            transform: scale(1.08);
+            transition:
+              opacity 1.5s ease-in-out,
+              transform 7s ease-out;
+            will-change:
+              opacity,
+              transform;
+          }
+
+          .hero-slide-active {
+            opacity: 1;
+            transform: scale(1);
+          }
+
+          .hero-image-number {
+            animation:
+              imageNumberEntrance 0.6s
+              ease-out both;
+          }
+
+          .hero-image-indicator {
+            position: relative;
+            overflow: hidden;
+          }
+
+          .hero-image-indicator::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #16AEE5;
+            transform: translateX(-100%);
+          }
+
+          .hero-image-indicator-active::after {
+            animation:
+              heroIndicatorProgress 6.5s
+              linear forwards;
+          }
+
+          @keyframes heroIndicatorProgress {
+            from {
+              transform: translateX(-100%);
+            }
+
+            to {
+              transform: translateX(0);
+            }
+          }
+
           @media (
             prefers-reduced-motion: reduce
           ) {
-            .hero-image-entrance,
+            .hero-content-entrance,
             .hero-words-entrance,
-            .hero-blue-line {
+            .hero-blue-line,
+            .hero-image-number,
+            .hero-image-indicator-active::after {
               animation: none;
+            }
+
+            .hero-slide {
+              transition:
+                opacity 0.3s ease;
+              transform: none;
+            }
+
+            .hero-slide-active {
+              transform: none;
             }
           }
         `}
       </style>
 
       <section className="relative flex min-h-screen flex-col overflow-hidden bg-black">
-        {/* Full background image */}
+        {/* Animated background image slider */}
         <div className="absolute inset-0 bg-black">
-          <img
-            src={MAIN_IMAGE}
-            alt={`${BRAND} complete apartment building`}
-            className="hero-image-entrance absolute inset-0 h-full w-full object-fill"
-          />
+          {heroImages.map(
+            (image, index) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                aria-hidden={
+                  index !== imageIndex
+                }
+                className={`hero-slide absolute inset-0 h-full w-full object-cover object-center ${
+                  index === imageIndex
+                    ? "hero-slide-active z-[2]"
+                    : "z-0"
+                }`}
+              />
+            ),
+          )}
 
-          {/* Dark left overlay for readable words */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/65 to-black/5" />
+          {/* Dark left overlay */}
+          <div className="absolute inset-0 z-[3] bg-gradient-to-r from-black/95 via-black/65 to-black/5" />
 
-          {/* Light bottom overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/15" />
+          {/* Bottom overlay */}
+          <div className="absolute inset-0 z-[3] bg-gradient-to-t from-black/75 via-transparent to-black/25" />
+
+          {/* Soft central overlay */}
+          <div className="absolute inset-0 z-[3] bg-black/10" />
         </div>
 
-        <main className="container relative z-10 flex min-h-screen flex-col justify-center pb-16 pt-32 text-white">
+        {/* Main hero content */}
+        <main className="container relative z-10 flex min-h-screen flex-col justify-center pb-24 pt-32 text-white">
           <Reveal>
             <div className="hero-words-entrance max-w-2xl">
               {/* Company name */}
@@ -187,7 +402,7 @@ const HeroSection = () => {
                 </p>
               </div>
 
-              {/* Professional title */}
+              {/* Hero heading */}
               <h1 className="mb-5 max-w-3xl font-display text-4xl leading-[1.02] text-white sm:text-5xl md:text-6xl lg:text-[68px]">
                 Modern Living,
 
@@ -196,12 +411,14 @@ const HeroSection = () => {
                 </span>
               </h1>
 
+              {/* Hero description */}
               <p className="mb-7 max-w-lg border-l-2 border-[#16AEE5] pl-5 text-sm leading-7 text-white/75 md:text-base">
-                Comfortable, private and modern apartment
-                living in Kigali, Rwanda.
+                Comfortable, private and modern
+                apartment living in Kigali,
+                Rwanda.
               </p>
 
-              {/* Rotating property words */}
+              {/* Rotating property information */}
               <div className="mb-6 min-h-[105px] max-w-xl overflow-hidden">
                 <div className="mb-2 flex items-center gap-3">
                   <Building2
@@ -227,12 +444,14 @@ const HeroSection = () => {
                   </h2>
 
                   <p className="text-sm leading-6 text-white/65">
-                    {activeHighlight.description}
+                    {
+                      activeHighlight.description
+                    }
                   </p>
                 </div>
               </div>
 
-              {/* Progress controls */}
+              {/* Property highlight controls */}
               <div className="mb-7 flex items-center gap-2">
                 {propertyHighlights.map(
                   (highlight, index) => (
@@ -240,11 +459,16 @@ const HeroSection = () => {
                       key={highlight.title}
                       type="button"
                       aria-label={`Show ${highlight.title}`}
+                      aria-pressed={
+                        index ===
+                        highlightIndex
+                      }
                       onClick={() =>
                         selectHighlight(index)
                       }
                       className={`h-[3px] transition-all duration-500 ${
-                        index === highlightIndex
+                        index ===
+                        highlightIndex
                           ? "w-9 bg-[#16AEE5]"
                           : "w-4 bg-white/30 hover:bg-white/70"
                       }`}
@@ -253,7 +477,7 @@ const HeroSection = () => {
                 )}
               </div>
 
-              {/* Buttons */}
+              {/* Action buttons */}
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button
                   asChild
@@ -285,8 +509,65 @@ const HeroSection = () => {
           </Reveal>
         </main>
 
-        {/* Blue edge */}
-        <div className="absolute bottom-0 left-0 z-10 h-1 w-full bg-gradient-to-r from-[#16AEE5] via-[#16AEE5]/50 to-transparent" />
+        {/* Background image slider controls */}
+        <div className="absolute bottom-8 right-5 z-20 flex items-end gap-5 sm:right-8 md:bottom-10 md:right-12">
+          {/* Image number */}
+          <div
+            key={imageIndex}
+            className="hero-image-number hidden items-end gap-1 text-white sm:flex"
+          >
+            <span className="font-display text-3xl leading-none text-[#16AEE5] md:text-4xl">
+              {String(
+                imageIndex + 1,
+              ).padStart(2, "0")}
+            </span>
+
+            <span className="pb-1 text-xs text-white/50">
+              /
+              {String(
+                heroImages.length,
+              ).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* Image indicators */}
+          <div className="flex items-center gap-2">
+            {heroImages.map(
+              (image, index) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  aria-label={`Show background image ${
+                    index + 1
+                  }`}
+                  aria-pressed={
+                    index === imageIndex
+                  }
+                  onClick={() =>
+                    selectImage(index)
+                  }
+                  className={`hero-image-indicator h-1 transition-all duration-500 ${
+                    index === imageIndex
+                      ? "hero-image-indicator-active w-12 bg-white/30"
+                      : "w-5 bg-white/35 hover:bg-white/70"
+                  }`}
+                />
+              ),
+            )}
+          </div>
+        </div>
+
+        {/* Decorative left label */}
+        <div className="absolute bottom-10 left-6 z-20 hidden origin-left -rotate-90 items-center gap-3 lg:flex">
+          <span className="h-px w-10 bg-white/40" />
+
+          <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/50">
+            Kigali, Rwanda
+          </span>
+        </div>
+
+        {/* Blue bottom edge */}
+        <div className="absolute bottom-0 left-0 z-20 h-1 w-full bg-gradient-to-r from-[#16AEE5] via-[#16AEE5]/50 to-transparent" />
       </section>
     </>
   );
